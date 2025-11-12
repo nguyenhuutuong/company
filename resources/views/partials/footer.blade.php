@@ -9,9 +9,9 @@
             <div class="col-md-4">
                 <h5>Thông tin liên lạc</h5>
                 <ul class="list-unstyled">
-                    <li><i class="bi bi-geo-alt-fill me-2"></i> Địa chỉ: {{ setting('site.company_address') }}</li>
-                    <li><i class="bi bi-telephone-fill me-2"></i> Điện thoại: {{ setting('site.company_phone_number') }}</li>
-                    <li><i class="bi bi-envelope-fill me-2"></i> Email: {{ setting('site.company_email') }}</li>
+                    <li><i class="bi bi-geo-alt-fill me-2"></i> Địa chỉ: {{ setting('site.address') }}</li>
+                    <li><i class="bi bi-telephone-fill me-2"></i> Điện thoại: {{ setting('site.phone') }}</li>
+                    <li><i class="bi bi-envelope-fill me-2"></i> Email: {{ setting('site.email') }}</li>
                 </ul>
             </div>
              <div class="col-md-4">
