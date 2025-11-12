@@ -13,19 +13,15 @@ return new class extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_category');
-            $table->string('image');
             $table->string('title');
-            $table->string('description');
-            $table->string('content');
-            $table->string('slug');
-            $table->tinyInteger('status')->default(0);
+            $table->string('slug')->unique();
+            $table->string('image')->nullable();
+            $table->text('summary')->nullable();
+            $table->longText('content');
+            $table->foreignId('new_category_id')->constrained()->onDelete('cascade');
+            $table->boolean('is_featured')->default(false);
+            $table->timestamp('published_at')->nullable();
             $table->timestamps();
-
-            $table->foreign('id_category')
-                  ->references('id')
-                  ->on('new_categories')
-                  ->onDelete('cascade');
         });
     }
 

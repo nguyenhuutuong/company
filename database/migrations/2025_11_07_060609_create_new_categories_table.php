@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('new_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('slug');
-            $table->tinyInteger('menu_order')->default(0);
-            $table->tinyInteger('status')->default(0);
+            $table->string('slug')->unique();
+            $table->integer('order')->default(0);
+            $table->boolean('is_featured')->default(false);
             $table->timestamps();
         });
     }
