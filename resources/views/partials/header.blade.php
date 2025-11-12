@@ -1,0 +1,93 @@
+<!-- Header: Logo, Tên công ty, Hotline -->
+<header class="top-bar shadow-sm">
+    <div class="container d-flex justify-content-between align-items-center">
+    <a class="company-info d-flex align-items-center" href="{{ url('/') }}" style="text-decoration: none; color: inherit;">
+        <i class="bi bi-building fs-2 me-2" style="color: #dc3545;"></i>
+        <span class="company-name">{{ setting('site.company_name') }}</span>
+    </a>
+        <div class="hotline">
+            <i class="bi bi-telephone-fill me-2"></i>
+            Hotline: {{ setting('site.company_phone_number') }}
+        </div>
+    </div>
+</header>
+
+<!-- Menu cố định -->
+<nav id="main-navbar" class="navbar navbar-expand-lg main-menu sticky-top">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="{{ url('/') }}">Trang chủ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('gioi-thieu') ? 'active' : '' }}" href="{{ url('/gioi-thieu') }}">Giới thiệu</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {{ Request::is('dich-vu*') ? 'active' : '' }}" href="{{ route('services.index') }}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Dịch vụ
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{{ route('services.index') }}">Tất Cả Dịch Vụ</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{{ route('services.full-package-construction') }}">Xây Nhà Trọn Gói</a></li>
+                        <li><a class="dropdown-item" href="{{ route('services.interior-design') }}">Thiết Kế & Thi Công Nội Thất</a></li>
+                        <li><a class="dropdown-item" href="{{ route('services.exterior-design') }}">Thiết Kế & Thi Công Ngoại Thất</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {{ Request::is('mau-nha*') ? 'active' : '' }}" href="{{ route('models.index') }}" id="navbarDropdownModels" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Mẫu nhà
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownModels">
+                        <li><a class="dropdown-item" href="{{ route('models.index') }}">Tất Cả Mẫu Nhà</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{{ route('models.townhouse') }}">Nhà Phố</a></li>
+                        <li><a class="dropdown-item" href="{{ route('models.villa') }}">Biệt Thự</a></li>
+                        <li><a class="dropdown-item" href="{{ route('models.single-story') }}">Nhà Cấp 4</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {{ Request::is('du-an*') ? 'active' : '' }}" href="{{ route('projects.index') }}" id="navbarDropdownProjects" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Dự án
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownProjects">
+                        <li><a class="dropdown-item" href="{{ route('projects.index') }}">Tất Cả Dự Án</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{{ route('projects.completed') }}">Dự Án Đã Hoàn Thành</a></li>
+                        <li><a class="dropdown-item" href="{{ route('projects.in-progress') }}">Dự Án Đang Thi Công</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {{ Request::is('tin-tuc*') ? 'active' : '' }}" href="{{ route('news.index') }}" id="navbarDropdownNews" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Tin tức
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownNews">
+                         <li><a class="dropdown-item" href="{{ route('news.index') }}">Tất Cả Tin Tức</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{{ route('news.experience') }}">Kinh Nghiệm Xây Nhà</a></li>
+                        <li><a class="dropdown-item" href="{{ route('news.company-news') }}">Tin Công Ty</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {{ Request::is('tu-van*') ? 'active' : '' }}" href="{{ route('consulting.index') }}" id="navbarDropdownConsulting" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Tư vấn
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownConsulting">
+                        <li><a class="dropdown-item" href="{{ route('consulting.index') }}">Tổng Quan Tư Vấn</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{{ route('consulting.process') }}">Quy Trình Làm Việc</a></li>
+                        <li><a class="dropdown-item" href="{{ route('consulting.feng-shui') }}">Tư Vấn Phong Thủy</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('lien-he') ? 'active' : '' }}" href="{{ url('/lien-he') }}">Liên hệ</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
