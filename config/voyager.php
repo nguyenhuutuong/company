@@ -255,4 +255,16 @@ return [
            ],
        ]*/
     ],
+    /*
+    |--------------------------------------------------------------------------
+    | Image Processing Driver
+    |--------------------------------------------------------------------------
+    |
+    | Voyager sử dụng thư viện xử lý ảnh. Mặc định là Imagick, nhưng nếu host
+    | không cài Imagick thì bạn có thể chuyển sang GD.
+    |
+    */
+    'image' => [
+        'driver' => 'gd',
+    ],
 ];

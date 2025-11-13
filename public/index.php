@@ -4,7 +4,9 @@ use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 
 define('LARAVEL_START', microtime(true));
-
+ini_set('upload_max_filesize', '20M');
+ini_set('post_max_size', '25M');
+ini_set('memory_limit', '256M');
 /*
 |--------------------------------------------------------------------------
 | Check If The Application Is Under Maintenance
