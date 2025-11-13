@@ -4,10 +4,11 @@
 
 @section('content')
     <!-- Hero Section -->
-    <section class="hero-section">
+    <section class="hero-section"
+        style="background-image: url('{{ $banner ? Voyager::image($banner->image) : asset("images/banner_default.jpg") }}')">
         <div class="container">
-            <h1 class="display-4">Kiến Tạo Không Gian, Xây Dựng Ước Mơ</h1>
-            <p class="lead mb-4">Chuyên nghiệp - Uy tín - Chất lượng hàng đầu</p>
+            <h1 class="display-4">{{ $banner->title ?? 'Tiêu đề mặc định' }}</h1>
+            <p class="lead mb-4">{{ $banner->description ?? 'Mô tả mặc định' }}</p>
             <a href="/du-an" class="btn btn-custom btn-lg">Xem dự án</a>
         </div>
     </section>
