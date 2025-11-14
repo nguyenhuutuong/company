@@ -50,68 +50,24 @@
         <div class="container text-center my-3">
             <h2 class="section-title">Dịch Vụ Của Chúng Tôi</h2>
             <div class="row mx-auto my-auto justify-content-center">
+            @if($services->isEmpty())
+                không có dịch vụ nào
+            @else
                 <div id="serviceCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-pause="hover">
                     <div class="carousel-inner" role="listbox">
-                        <div class="carousel-item active">
-                            <div class="col-md-4">
-                                <div class="service-card" style="background-image: url('https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=2070&auto=format&fit=crop');">
-                                    <div class="overlay">
-                                        <h4>Xây Nhà Trọn Gói</h4>
-                                        <p>Giải pháp xây dựng toàn diện từ thiết kế đến hoàn thiện.</p>
+                        @foreach($services as $index => $service)
+                            <a href="{{ route('services.detail', $service->slug) }}"
+                                class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                                <div class="col-md-4">
+                                    <div class="service-card" style="background-image: url('{{ $banner ? Voyager::image($service->image) : asset("images/banner_default.jpg") }}');">
+                                        <div class="overlay">
+                                            <h4>{{ $service->name ?? 'Tiêu đề mặc định' }}</h4>
+                                            <p>{{ $service->summary ?? 'Tiêu đề mặc định' }}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="col-md-4">
-                                <div class="service-card" style="background-image: url('https://images.unsplash.com/photo-1618220179428-22790b461013?q=80&w=2127&auto=format&fit=crop');">
-                                    <div class="overlay">
-                                        <h4>Thiết Kế Nội Thất</h4>
-                                        <p>Tạo nên không gian sống sang trọng, hiện đại và tối ưu.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="col-md-4">
-                                 <div class="service-card" style="background-image: url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=2158&auto=format&fit=crop');">
-                                    <div class="overlay">
-                                        <h4>Thi Công Ngoại Thất</h4>
-                                        <p>Vẻ đẹp hài hòa với kiến trúc tổng thể và môi trường.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="col-md-4">
-                                <div class="service-card" style="background-image: url('https://images.unsplash.com/photo-1505691938895-1758d7FEB5a1?q=80&w=2070&auto=format&fit=crop');">
-                                    <div class="overlay">
-                                        <h4>Sửa Chữa & Cải Tạo</h4>
-                                        <p>Mang lại diện mạo mới cho ngôi nhà của bạn.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="col-md-4">
-                                <div class="service-card" style="background-image: url('https://images.unsplash.com/photo-1484154218962-a197022b5858?q=80&w=2074&auto=format&fit=crop');">
-                                    <div class="overlay">
-                                        <h4>Tư Vấn & Thiết Kế</h4>
-                                        <p>Giải pháp tối ưu về công năng và chi phí cho khách hàng.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                         <div class="carousel-item">
-                            <div class="col-md-4">
-                                 <div class="service-card" style="background-image: url('https://images.unsplash.com/photo-1600607687939-ce8a67767e5c?q=80&w=2070&auto=format&fit=crop');">
-                                    <div class="overlay">
-                                        <h4>Xây Dựng Biệt Thự</h4>
-                                        <p>Đẳng cấp, sang trọng và khác biệt trong từng công trình.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            </a>
+                        @endforeach
                     </div>
                     <a class="carousel-control-prev bg-transparent w-aut" href="#serviceCarousel" role="button" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -120,6 +76,7 @@
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     </a>
                 </div>
+            @endif
             </div>
         </div>
     </section>

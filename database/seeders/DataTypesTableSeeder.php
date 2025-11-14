@@ -11,7 +11,7 @@ class DataTypesTableSeeder extends Seeder
      * Auto generated seed file.
      */
     public function run()
-    {
+    {    
         $dataType = $this->dataType('slug', 'users');
         if (!$dataType->exists) {
             $dataType->fill([

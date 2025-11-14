@@ -27,15 +27,13 @@
                     <a class="nav-link {{ Request::is('gioi-thieu') ? 'active' : '' }}" href="{{ url('/gioi-thieu') }}">Giới thiệu</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle {{ Request::is('dich-vu*') ? 'active' : '' }}" href="{{ route('services.index') }}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle {{ Request::is('dich-vu*') ? 'active' : '' }}" href="{{ route('services.detail', 'all') }}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Dịch vụ
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{{ route('services.index') }}">Tất Cả Dịch Vụ</a></li>
+                        <li><a class="dropdown-item" href="{{ route('services.detail', 'all') }}">Tất Cả Dịch Vụ</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="{{ route('services.full-package-construction') }}">Xây Nhà Trọn Gói</a></li>
-                        <li><a class="dropdown-item" href="{{ route('services.interior-design') }}">Thiết Kế & Thi Công Nội Thất</a></li>
-                        <li><a class="dropdown-item" href="{{ route('services.exterior-design') }}">Thiết Kế & Thi Công Ngoại Thất</a></li>
+                        <li><a class="dropdown-item" href="{{ route('services.detail', 'all') }}">Xây Nhà Trọn Gói</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
