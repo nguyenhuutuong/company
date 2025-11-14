@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Intervention\Image\Exception\NotReadableException;
 
 class Handler extends ExceptionHandler
 {
@@ -41,6 +42,12 @@ class Handler extends ExceptionHandler
      */
     public function register(): void
     {
+        $this->renderable(function (NotReadableException $e, $request) {
+            if ($request->is('admin/*')) {
+                return response()->view('errors.unsupported_image', [], 500);
+            }
+        });
+
         $this->reportable(function (Throwable $e) {
             //
         });

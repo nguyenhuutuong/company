@@ -24,6 +24,13 @@ Route::get('/lien-he', function () {
     return view('contact');
 });
 
+Route::get('/phpinfo', function () {
+    phpinfo();
+});
+Route::get('/error/unsupported-image', function () {
+    return view('errors.unsupported_image');
+})->name('error.unsupported_image');
+
 // Services
 Route::prefix('dich-vu')->name('services.')->group(function () {
     Route::get('/', function () {
@@ -47,13 +54,6 @@ Route::prefix('dich-vu')->name('services.')->group(function () {
                 'image' => 'https://images.unsplash.com/photo-1600585152220-406b9b21dc3b?q=80&w=1974&auto=format&fit=crop'
             ],
         ];
-        $services = new LengthAwarePaginator(
-            $servicesData,
-            count($servicesData),
-            2,
-            Paginator::resolveCurrentPage(),
-            ['path' => Paginator::resolveCurrentPath()]
-        );
         return view('services.index', ['services' => $services]);
     })->name('index');
 
