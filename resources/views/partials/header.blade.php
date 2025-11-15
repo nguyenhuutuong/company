@@ -53,20 +53,20 @@
                             <li><a class="dropdown-item" href="{{ route('models.detail', 'all') }}">Tất Cả Mẫu Nhà</a></li>
                             <li><hr class="dropdown-divider"></li>
                             @foreach($MenuHomeType as $item)
-                                <li><a class="dropdown-item" href="{{ route('models.detail', $item->slug) }}">{{$item->name}}</a></li>
+                                <li><a class="dropdown-item" href="{{ route('projects.index', ['id'=>$item->id]) }}">{{$item->name}}</a></li>
                             @endforeach
                         @endif
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle {{ Request::is('du-an*') ? 'active' : '' }}" href="{{ route('projects.index') }}" id="navbarDropdownProjects" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle {{ Request::is('du-an*') ? 'active' : '' }}" href="{{ route('projects.index', ['slug'=>'all']) }}" id="navbarDropdownProjects" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Dự án
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownProjects">
                         <li><a class="dropdown-item" href="{{ route('projects.index', ['slug'=>'all']) }}">Tất Cả Dự Án</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="">Dự Án Đã Hoàn Thành</a></li>
-                        <li><a class="dropdown-item" href="">Dự Án Đang Thi Công</a></li>
+                        <li><a class="dropdown-item" href="{{ route('projects.index', ['status'=>'hoan-thanh']) }}">Dự Án Đã Hoàn Thành</a></li>
+                        <li><a class="dropdown-item" href="{{ route('projects.index', ['status'=>'thi-cong']) }}">Dự Án Đang Thi Công</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">

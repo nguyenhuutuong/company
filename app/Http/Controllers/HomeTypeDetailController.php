@@ -8,14 +8,25 @@ use App\Models\HomeTypeDetail;
 
 class HomeTypeDetailController extends VoyagerBaseController
 {
-    public function index(Request $request) {
+    public function userIndex(Request $request) {
+        
         if($request->slug == 'all'){
             $projects = HomeTypeDetail::where('is_featured', 1)->paginate(6);
             return view('projects.index', compact('projects'));
         }
+        if($request->status == 'hoan-thanh' || $request->status == 'thi-cong'){
+            $status = $request->status == 'hoan-thanh' ? 1 : 0;
+            $projects = HomeTypeDetail::where('status', $status)
+                                        ->where('is_featured', 1)->paginate(6);      
+            return view('projects.index', compact('projects'));
+        }
+
+        $projects = HomeTypeDetail::where('home_type_id', $request->id)->where('is_featured', 1)->paginate(6);
+        return view('projects.index', compact('projects'));
+
     }
 
-    public function show(Request $request, $id){
+    public function userShow(Request $request, $id){
         if($request->slug == 'all'){
             $home_types = HomeType::where('is_featured', 1)->paginate(6);
             return view('models.index', compact('home_types'));

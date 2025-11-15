@@ -8,7 +8,7 @@ use App\Models\Service;
 
 class ServiceController extends VoyagerBaseController
 {
-    public function show(Request $request, $id){
+    public function userShow(Request $request, $id){
         
         if($request->slug == 'all'){
             $services = Service::where('is_featured', 1)->paginate(6);

@@ -37,18 +37,18 @@ Route::get('/error/unsupported-image', function () {
 
 // Services
 Route::prefix('dich-vu')->name('services.')->group(function () {
-    Route::get('/{slug}', [ServiceController::class, 'show'])->name('detail');
+    Route::get('/{slug}', [ServiceController::class, 'userShow'])->name('detail');
 });
 
 // House Models
 Route::prefix('mau-nha')->name('models.')->group(function () {
-    Route::get('/{slug}', [HomeTypeController::class, 'show'])->name('detail');
+    Route::get('/{slug}', [HomeTypeController::class, 'userShow'])->name('detail');
 });
 
 // Projects
 Route::prefix('du-an')->name('projects.')->group(function () {
-    Route::get('/', [HomeTypeDetailController::class, 'index'])->name('index');
-    Route::get('/{slug}', [HomeTypeDetailController::class, 'show'])->name('detail');
+    Route::get('/', [HomeTypeDetailController::class, 'userIndex'])->name('index');
+    Route::get('/{slug}', [HomeTypeDetailController::class, 'userShow'])->name('detail');
 });
 
 

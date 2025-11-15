@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
         // Tạo biến global
         View::share('MenuServices', Service::select('name', 'slug')
                                         ->where('is_featured', 1)->get());
-        View::share('MenuHomeType', HomeType::select('name', 'slug')
+        View::share('MenuHomeType', HomeType::select('id', 'name', 'slug')
                                         ->where('is_featured', 1)->get());
                                                                        
     }
