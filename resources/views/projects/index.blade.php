@@ -56,27 +56,38 @@
             <h2 class="section-title">Dấu Ấn Của HTcons</h2>
             <p class="text-muted">Cùng nhìn lại những công trình mà chúng tôi đã kiến tạo nên.</p>
         </div>
-
         <div class="row">
-            <!-- Sample Project 1 -->
-            <div class="col-lg-4 col-md-6 mb-4">
-                <a href="{{ route('projects.show', ['slug' => 'biet-thu-hien-dai-quan-9']) }}" class="project-card-link">
-                    <div class="project-card">
-                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop" class="project-card-img" alt="Dự án Biệt thự Hiện đại Quận 9">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <h5 class="card-title fw-bold mb-0">Biệt thự Hiện đại Quận 9</h5>
-                                <span class="project-status status-completed">Hoàn thành</span>
+            @if($projects->isEmpty())
+                <div>Hiện không có dự án nào</div>
+            @else
+                @foreach($projects as $project)
+                    <!-- Sample Project 1 -->
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <a href="{{ route('projects.detail', $project->slug) }}" class="project-card-link">
+                            <div class="project-card">
+                                <img src="{{ $project->image ? Voyager::image($project->image) : asset("images/project_default.jpg") }}" class="project-card-img" alt="Dự án Biệt thự Hiện đại Quận 9">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="card-title fw-bold mb-0">{{$project->name}}</h5>
+                                        @if($project->status)
+                                            <span class="project-status status-completed">Hoàn thành</span>
+                                        @else
+                                            <span class="project-status status-in-progress">Đang thi công</span>
+                                        @endif
+                                        
+                                    </div>
+                                    <p class="card-text text-muted small">Một không gian sống đẳng cấp, tiện nghi và chan hòa với thiên nhiên.</p>
+                                </div>
                             </div>
-                            <p class="card-text text-muted small">Một không gian sống đẳng cấp, tiện nghi và chan hòa với thiên nhiên.</p>
-                        </div>
+                        </a>
                     </div>
-                </a>
-            </div>
+                @endforeach
+            @endif
+            
 
             <!-- Sample Project 2 -->
-            <div class="col-lg-4 col-md-6 mb-4">
-                 <a href="{{ route('projects.show', ['slug' => 'cai-tao-chung-cu-go-vap']) }}" class="project-card-link">
+            <!-- <div class="col-lg-4 col-md-6 mb-4">
+                 <a href="{{ route('projects.detail', ['slug' => 'cai-tao-chung-cu-go-vap']) }}" class="project-card-link">
                     <div class="project-card">
                         <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=2070&auto=format&fit=crop" class="project-card-img" alt="Dự án Cải tạo Chung cư Gò Vấp">
                         <div class="card-body">
@@ -88,7 +99,7 @@
                         </div>
                     </div>
                 </a>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->text('summary')->nullable();
             $table->longText('content')->nullable();
+            $table->boolean('status')->default(false);
             $table->boolean('is_featured')->default(false);
             $table->integer('order')->default(0);
 

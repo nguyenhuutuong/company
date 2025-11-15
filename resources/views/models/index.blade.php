@@ -48,47 +48,28 @@
             <h2 class="section-title">Khám Phá Các Mẫu Nhà Ưa Chuộng</h2>
             <p class="text-muted">Từ hiện đại đến cổ điển, chúng tôi mang đến những thiết kế nhà ở đáp ứng mọi nhu cầu và phong cách.</p>
         </div>
-
-        <div class="row">
-            <!-- Sample Model 1: Townhouse -->
-            <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-stretch">
-                <a href="{{ route('models.townhouse') }}" class="text-decoration-none w-100">
-                    <div class="model-card">
-                        <img src="https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?q=80&w=1974&auto=format&fit=crop" class="model-card-img" alt="Mẫu nhà phố hiện đại">
-                        <div class="card-body">
-                            <h5 class="card-title">Mẫu Nhà Phố Hiện Đại</h5>
-                            <p class="card-text">Thiết kế thông minh, tối ưu diện tích và ánh sáng, phù hợp với cuộc sống đô thị năng động.</p>
+        @if($home_types->isEmpty())
+            <div>Hiện tại chưa có mẫu nào được cập nhật cả</div>
+        @else
+            <div class="row">
+                @foreach($home_types as $item)
+                    <!-- Sample Model 1: -->
+                    <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-stretch">
+                    <a href="{{ route('models.detail', $item->slug) }}" class="text-decoration-none w-100">
+                        <div class="model-card">
+                            <img src="{{ Voyager::image($item->image) }}" class="model-card-img" alt="{{ $item->name }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $item->name }}</h5>
+                                <p class="card-text">{{ $item->summary }}</p>
+                            </div>
                         </div>
+                    </a>
                     </div>
-                </a>
+                @endforeach
             </div>
+        @endif
 
-            <!-- Sample Model 2: Villa -->
-            <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-stretch">
-                <a href="{{ route('models.villa') }}" class="text-decoration-none w-100">
-                    <div class="model-card">
-                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" class="model-card-img" alt="Biệt thự sân vườn">
-                        <div class="card-body">
-                            <h5 class="card-title">Biệt Thự Sân Vườn</h5>
-                            <p class="card-text">Không gian sống sang trọng, gần gũi với thiên nhiên, mang lại sự thư thái và đẳng cấp.</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Sample Model 3: Single-Story -->
-            <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-stretch">
-                <a href="{{ route('models.single-story') }}" class="text-decoration-none w-100">
-                    <div class="model-card">
-                        <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=2070&auto=format&fit=crop" class="model-card-img" alt="Nhà cấp 4 mái Thái">
-                        <div class="card-body">
-                            <h5 class="card-title">Nhà Cấp 4 Mái Thái</h5>
-                            <p class="card-text">Thiết kế truyền thống kết hợp hiện đại, ấm cúng, phù hợp với gia đình nhiều thế hệ.</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
+       
     </div>
 </section>
 

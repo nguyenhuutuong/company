@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\HomeTypeController;
+use App\Http\Controllers\HomeTypeDetailController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -46,21 +47,8 @@ Route::prefix('mau-nha')->name('models.')->group(function () {
 
 // Projects
 Route::prefix('du-an')->name('projects.')->group(function () {
-    Route::get('/', function () {
-        return view('projects.index');
-    })->name('index');
-
-    Route::get('/da-hoan-thanh', function () {
-        return view('projects.completed');
-    })->name('completed');
-
-    Route::get('/dang-thi-cong', function () {
-        return view('projects.in-progress');
-    })->name('in-progress');
-
-    Route::get('/{slug}', function () {
-        return view('projects.show');
-    })->name('show');
+    Route::get('/', [HomeTypeDetailController::class, 'index'])->name('index');
+    Route::get('/{slug}', [HomeTypeDetailController::class, 'show'])->name('detail');
 });
 
 

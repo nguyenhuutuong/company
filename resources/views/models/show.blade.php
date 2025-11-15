@@ -7,7 +7,7 @@
 @include('partials.page-header', [
     'title' => 'Mẫu Nhà Phố Đẹp',
     'breadcrumbs' => [
-        ['name' => 'Mẫu nhà', 'url' => route('models.index')],
+        ['name' => 'Mẫu nhà', 'url' => route('models.detail', 'all')],
         ['name' => 'Nhà phố']
     ]
 ])

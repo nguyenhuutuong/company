@@ -50,7 +50,7 @@
                         @if($MenuHomeType->isEmpty())
                             <li>không có mẫu nhà nào</li>
                         @else
-                            <li><a class="dropdown-item" href="{{ route('models.detail', 'all') }}">Tất Cả Dịch Vụ</a></li>
+                            <li><a class="dropdown-item" href="{{ route('models.detail', 'all') }}">Tất Cả Mẫu Nhà</a></li>
                             <li><hr class="dropdown-divider"></li>
                             @foreach($MenuHomeType as $item)
                                 <li><a class="dropdown-item" href="{{ route('models.detail', $item->slug) }}">{{$item->name}}</a></li>
@@ -63,10 +63,10 @@
                         Dự án
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownProjects">
-                        <li><a class="dropdown-item" href="{{ route('projects.index') }}">Tất Cả Dự Án</a></li>
+                        <li><a class="dropdown-item" href="{{ route('projects.index', ['slug'=>'all']) }}">Tất Cả Dự Án</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="{{ route('projects.completed') }}">Dự Án Đã Hoàn Thành</a></li>
-                        <li><a class="dropdown-item" href="{{ route('projects.in-progress') }}">Dự Án Đang Thi Công</a></li>
+                        <li><a class="dropdown-item" href="">Dự Án Đã Hoàn Thành</a></li>
+                        <li><a class="dropdown-item" href="">Dự Án Đang Thi Công</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">

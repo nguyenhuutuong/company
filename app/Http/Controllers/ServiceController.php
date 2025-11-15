@@ -11,7 +11,7 @@ class ServiceController extends VoyagerBaseController
     public function show(Request $request, $id){
         
         if($request->slug == 'all'){
-            $services = Service::where('is_featured', 1)->paginate(1);
+            $services = Service::where('is_featured', 1)->paginate(6);
             return view('services.index', compact('services'));
         }
         $service = Service::where('slug', $request->slug)
