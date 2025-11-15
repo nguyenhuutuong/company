@@ -3,6 +3,11 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
+use Illuminate\Pagination\Paginator;
+
+use App\Models\Service;
+use App\Models\HomeType;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +24,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Paginator::useBootstrap();
+        // Tạo biến global
+        View::share('MenuServices', Service::select('name', 'slug')
+                                        ->where('is_featured', 1)->get());
+        View::share('MenuHomeType', HomeType::select('name', 'slug')
+                                        ->where('is_featured', 1)->get());
+                                                                       
     }
 }

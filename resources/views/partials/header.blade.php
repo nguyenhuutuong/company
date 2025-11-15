@@ -31,21 +31,31 @@
                         Dịch vụ
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{{ route('services.detail', 'all') }}">Tất Cả Dịch Vụ</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="{{ route('services.detail', 'all') }}">Xây Nhà Trọn Gói</a></li>
+                        @if($MenuServices->isEmpty())
+                            <li>không có dịch vụ nào</li>
+                        @else
+                            <li><a class="dropdown-item" href="{{ route('services.detail', 'all') }}">Tất Cả Dịch Vụ</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            @foreach($MenuServices as $item)
+                                <li><a class="dropdown-item" href="{{ route('services.detail', $item->slug) }}">{{$item->name}}</a></li>
+                            @endforeach
+                        @endif
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle {{ Request::is('mau-nha*') ? 'active' : '' }}" href="{{ route('models.index') }}" id="navbarDropdownModels" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle {{ Request::is('mau-nha*') ? 'active' : '' }}" href="{{ route('models.detail', 'all')}}" id="navbarDropdownModels" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Mẫu nhà
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownModels">
-                        <li><a class="dropdown-item" href="{{ route('models.index') }}">Tất Cả Mẫu Nhà</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="{{ route('models.townhouse') }}">Nhà Phố</a></li>
-                        <li><a class="dropdown-item" href="{{ route('models.villa') }}">Biệt Thự</a></li>
-                        <li><a class="dropdown-item" href="{{ route('models.single-story') }}">Nhà Cấp 4</a></li>
+                        @if($MenuHomeType->isEmpty())
+                            <li>không có mẫu nhà nào</li>
+                        @else
+                            <li><a class="dropdown-item" href="{{ route('models.detail', 'all') }}">Tất Cả Dịch Vụ</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            @foreach($MenuHomeType as $item)
+                                <li><a class="dropdown-item" href="{{ route('models.detail', $item->slug) }}">{{$item->name}}</a></li>
+                            @endforeach
+                        @endif
                     </ul>
                 </li>
                 <li class="nav-item dropdown">

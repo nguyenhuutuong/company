@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\HomeTypeController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -33,64 +34,14 @@ Route::get('/error/unsupported-image', function () {
     return view('errors.unsupported_image');
 })->name('error.unsupported_image');
 
-// Services service.detail
+// Services
 Route::prefix('dich-vu')->name('services.')->group(function () {
-    // Services 
     Route::get('/{slug}', [ServiceController::class, 'show'])->name('detail');
-    // Route::get('/', function () {
-        // $servicesData = [
-        //     [
-        //         'name' => 'Xây Nhà Trọn Gói',
-        //         'description' => 'Cung cấp giải pháp toàn diện từ thiết kế, xin phép, thi công đến hoàn thiện, giúp bạn an tâm xây dựng tổ ấm.',
-        //         'url' => route('services.full-package-construction'),
-        //         'image' => 'https://images.unsplash.com/photo-1579969406409-90d235424563?q=80&w=1974&auto=format&fit=crop'
-        //     ],
-        //     [
-        //         'name' => 'Thiết Kế & Thi Công Nội Thất',
-        //         'description' => 'Kiến tạo không gian sống đẳng cấp, cá nhân hóa theo phong cách riêng, tối ưu hóa công năng sử dụng.',
-        //         'url' => route('services.interior-design'),
-        //         'image' => 'https://images.unsplash.com/photo-1618220179428-22790b461013?q=80&w=1974&auto=format&fit=crop'
-        //     ],
-        //     [
-        //         'name' => 'Thiết Kế & Thi Công Ngoại Thất',
-        //         'description' => 'Nâng tầm vẻ đẹp và giá trị cho công trình của bạn với các giải pháp thiết kế ngoại thất sáng tạo và bền vững.',
-        //         'url' => route('services.exterior-design'),
-        //         'image' => 'https://images.unsplash.com/photo-1600585152220-406b9b21dc3b?q=80&w=1974&auto=format&fit=crop'
-        //     ],
-        // ];
-        // return view('services.index', ['services' => $services]);
-    // })->name('index');
-
-    // Route::get('/xay-nha-tron-goi', function () {
-    //     return view('services.full-package-construction');
-    // })->name('full-package-construction');
-
-    // Route::get('/thiet-ke-thi-cong-noi-that', function () {
-    //     return view('services.interior-design');
-    // })->name('interior-design');
-
-    // Route::get('/thiet-ke-thi-cong-ngoai-that', function () {
-    //     return view('services.exterior-design');
-    // })->name('exterior-design');
 });
 
 // House Models
 Route::prefix('mau-nha')->name('models.')->group(function () {
-    Route::get('/', function () {
-        return view('models.index');
-    })->name('index');
-
-    Route::get('/nha-pho', function () {
-        return view('models.townhouse');
-    })->name('townhouse');
-
-    Route::get('/biet-thu', function () {
-        return view('models.villa');
-    })->name('villa');
-
-    Route::get('/nha-cap-4', function () {
-        return view('models.single-story');
-    })->name('single-story');
+    Route::get('/{slug}', [HomeTypeController::class, 'show'])->name('detail');
 });
 
 // Projects

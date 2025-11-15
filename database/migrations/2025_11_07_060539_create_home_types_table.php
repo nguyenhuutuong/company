@@ -16,8 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->string('image')->nullable();
-            $table->text('summary')->nullable();
-            $table->longText('content');
+            $table->text('summary')->nullable()
             $table->integer('order')->default(0);
             $table->boolean('is_featured')->default(false);
             $table->timestamps();

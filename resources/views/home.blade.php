@@ -59,7 +59,7 @@
                             <a href="{{ route('services.detail', $service->slug) }}"
                                 class="carousel-item {{ $index == 0 ? 'active' : '' }}">
                                 <div class="col-md-4">
-                                    <div class="service-card" style="background-image: url('{{ $banner ? Voyager::image($service->image) : asset("images/banner_default.jpg") }}');">
+                                    <div class="service-card" style="background-image: url('{{ $service->image ? Voyager::image($service->image) : asset("images/banner_default.jpg") }}');">
                                         <div class="overlay">
                                             <h4>{{ $service->name ?? 'Tiêu đề mặc định' }}</h4>
                                             <p>{{ $service->summary ?? 'Tiêu đề mặc định' }}</p>

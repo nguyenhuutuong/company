@@ -41,11 +41,11 @@
             @forelse ($services as $service)
                 <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-stretch">
                     <div class="service-overview-card">
-                        <img src="{{ $service['image'] }}" class="card-img-top" alt="{{ $service['name'] }}">
+                        <img src="{{ $service ? Voyager::image($service->image) : asset("images/service_default.jpg") }}" class="card-img-top" alt="{{ $service->name }}">
                         <div class="card-body d-flex flex-column p-4">
-                            <h5 class="card-title fw-bold">{{ $service['name'] }}</h5>
-                            <p class="card-text text-muted small flex-grow-1">{{ $service['description'] }}</p>
-                            <a href="{{ $service['url'] }}" class="btn btn-primary mt-3 align-self-start">Xem chi tiết</a>
+                            <h5 class="card-title fw-bold">{{ $service->name }}</h5>
+                            <p class="card-text text-muted small flex-grow-1">{{ $service->summary}}</p>
+                            <a href="{{ route('services.detail', $service->slug)}}" class="btn btn-primary mt-3 align-self-start">Xem chi tiết</a>
                         </div>
                     </div>
                 </div>
