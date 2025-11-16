@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('home_types', function (Blueprint $table) {
+        Schema::create('messages', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('slug')->unique();
-            $table->string('image')->nullable();
-            $table->text('summary')->nullable();
-            $table->integer('order')->default(0);
-            $table->boolean('is_featured')->default(false);
+            $table->string('email');
+            $table->string('phone');
+            $table->unsignedBigInteger('parent_id')->nullable();  // cha trong cùng bảng
+            $table->text('message');
+            $table->boolean('is_read')->default(false);
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('home_types');
+        Schema::dropIfExists('contacts');
     }
 };
