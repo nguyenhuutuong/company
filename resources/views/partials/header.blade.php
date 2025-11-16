@@ -70,14 +70,19 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle {{ Request::is('tin-tuc*') ? 'active' : '' }}" href="{{ route('news.index') }}" id="navbarDropdownNews" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle {{ Request::is('tin-tuc*') ? 'active' : '' }}" href="{{ route('news.index', ['slug'=>'all']) }}" id="navbarDropdownNews" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Tin tức
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownNews">
-                         <li><a class="dropdown-item" href="{{ route('news.index') }}">Tất Cả Tin Tức</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="{{ route('news.experience') }}">Kinh Nghiệm Xây Nhà</a></li>
-                        <li><a class="dropdown-item" href="{{ route('news.company-news') }}">Tin Công Ty</a></li>
+                        @if($MenuNewCategory->isEmpty())
+                            <li>không có danh mục tin tức nào</li>
+                        @else
+                            <li><a class="dropdown-item" href="{{ route('news.index', ['slug'=>'all']) }}">Tất Cả</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            @foreach($MenuNewCategory as $item)
+                                <li><a class="dropdown-item" href="{{ route('news.index', ['id'=>$item->id]) }}">{{$item->name}}</a></li>
+                            @endforeach
+                        @endif
                     </ul>
                 </li>
                 <li class="nav-item dropdown">

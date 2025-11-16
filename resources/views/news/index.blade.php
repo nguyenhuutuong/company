@@ -149,36 +149,26 @@
         <div class="row">
             <!-- Main Content (col-lg-8) -->
             <div class="col-lg-8">
-                
-                <!-- Article 1 -->
-                <article class="article-entry">
-                    <div class="article-thumb">
-                        <a href="{{ route('news.show') }}">
-                            <img src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=2070&auto=format&fit=crop" alt="KHỞI CÔNG BIỆT THỰ 260M2 TẠI HÀ TĨNH">
-                        </a>
-                    </div>
-                    <div class="article-body">
-                        <h3 class="article-title"><a href="{{ route('news.show') }}">KHỞI CÔNG BIỆT THỰ 260M2 TẠI HÀ TĨNH</a></h3>
-                        <div class="article-meta"><i class="bi bi-calendar-alt"></i> 10/11/2025</div>
-                        <p class="article-description">Vừa qua, ngày 8/11/2025, HTcons đã cùng gia đình anh Nguyễn Xuân Huân khởi công công trình biệt thự hiện đại với quy mô 2 tầng...</p>
-                    </div>
-                </article>
-
-                <!-- Article 2 -->
-                <article class="article-entry">
-                    <div class="article-thumb">
-                        <a href="{{ route('news.show') }}">
-                            <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1974&auto=format&fit=crop" alt="KHỞI CÔNG BIỆT THỰ HƠN 500M2 TẠI NINH KIỀU - CẦN THƠ">
-                        </a>
-                    </div>
-                    <div class="article-body">
-                        <h3 class="article-title"><a href="{{ route('news.show') }}">KHỞI CÔNG BIỆT THỰ HƠN 500M2 TẠI NINH KIỀU - CẦN THƠ</a></h3>
-                        <div class="article-meta"><i class="bi bi-calendar-alt"></i> 06/11/2025</div>
-                        <p class="article-description">Vừa qua, ngày 5/11/2025 HTcons cùng gia chủ khởi công công trình biệt thự hơn 500m2, quy mô 3 tầng tại Ninh Kiều, Cần Thơ...</p>
-                    </div>
-                </article>
-
-                 <!-- More articles can be added here to demonstrate scrolling -->
+                @if($news->isEmpty())
+                    <li>không có tin tức nào</li>
+                @else
+                    @foreach($news as $item)
+                        <!-- Article -->
+                        <article class="article-entry">
+                            <div class="article-thumb">
+                                <a href="{{ route('news.detail', $item->slug) }}">
+                                    <img src="{{ Voyager::image($item->image) }}" alt="KHỞI CÔNG BIỆT THỰ 260M2 TẠI HÀ TĨNH">
+                                </a>
+                            </div>
+                            <div class="article-body">
+                                <h3 class="article-title"><a href="{{ route('news.detail', $item->slug) }}">{{$item->title}}</a></h3>
+                                <div class="article-meta"><i class="bi bi-calendar-alt"></i> {{$item->published_at}}</div>
+                                <p class="article-description">{{$item->summary}}</p>
+                            </div>
+                        </article>
+                    @endforeach
+                @endif            
+             <!-- More articles can be added here to demonstrate scrolling -->
 
             </div>
 
@@ -190,24 +180,24 @@
                         <div class="sidebar-widget">
                             <h3 class="widget-title">Bài viết mới nhất</h3>
                             <div class="latest-posts">
-                                <div class="post-item">
-                                    <div class="post-item-thumb">
-                                        <a href="#"><img src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=2070&auto=format&fit=crop" alt="..."></a>
+                                @if($hotNews->isEmpty())
+                                    <div class="post-item">
+                                        <div>Không có bài nào mới cả</div>
                                     </div>
-                                    <div class="post-item-body">
-                                        <div class="post-title"><a href="#">KHỞI CÔNG BIỆT THỰ 260M2 TẠI HÀ TĨNH</a></div>
-                                        <div class="post-date">10/11/2025</div>
-                                    </div>
-                                </div>
-                                 <div class="post-item">
-                                    <div class="post-item-thumb">
-                                        <a href="#"><img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1974&auto=format&fit=crop" alt="..."></a>
-                                    </div>
-                                    <div class="post-item-body">
-                                        <div class="post-title"><a href="#">KHỞI CÔNG BIỆT THỰ HƠN 500M2 TẠI NINH KIỀU - CẦN THƠ</a></div>
-                                        <div class="post-date">06/11/2025</div>
-                                    </div>
-                                </div>
+                                @else
+                                    @foreach($hotNews as $item)
+                                        <div class="post-item">
+                                            <div class="post-item-thumb">
+                                                <a href="#"><img src="{{ Voyager::image($item->image) }}" alt="..."></a>
+                                            </div>
+                                            <div class="post-item-body">
+                                                <div class="post-title"><a href="#">{{$item->title}}</a></div>
+                                                <div class="post-date">{{$item->published_at}}</div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @endif            
+                                
                             </div>
                         </div>
 
@@ -216,18 +206,15 @@
                             <h3 class="widget-title">Danh mục</h3>
                             <div class="category-list">
                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">
-                                        <a href="{{ route('news.experience') }}">Kinh nghiệm xây nhà</a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <a href="{{ route('news.company-news') }}">Tin tức công ty</a>
-                                    </li>
-                                     <li class="list-group-item">
-                                        <a href="#">Tư vấn thiết kế</a>
-                                    </li>
-                                     <li class="list-group-item">
-                                        <a href="{{ route('consulting.feng-shui') }}">Phong thủy</a>
-                                    </li>
+                                    @if($MenuNewCategory->isEmpty())
+                                        <li>không có danh mục tin tức nào</li>
+                                    @else
+                                        @foreach($MenuNewCategory as $item)
+                                            <li class="list-group-item">
+                                                <a href="{{ route('news.index', ['id'=>$item->id]) }}">{{$item->name}}</a>
+                                            </li>
+                                        @endforeach
+                                    @endif
                                 </ul>
                             </div>
                         </div>

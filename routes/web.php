@@ -16,6 +16,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\HomeTypeController;
 use App\Http\Controllers\HomeTypeDetailController;
+use App\Http\Controllers\NewsController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -54,36 +55,14 @@ Route::prefix('du-an')->name('projects.')->group(function () {
 
 // News
 Route::prefix('tin-tuc')->name('news.')->group(function () {
-    Route::get('/', function() {
-        return view('news.index');
-    })->name('index');
-
-    Route::get('/bai-viet-mau', function() {
-        return view('news.show');
-    })->name('show');
-
-    Route::get('/kinh-nghiem-xay-nha', function () {
-        return view('news.experience');
-    })->name('experience');
-
-    Route::get('/tin-cong-ty', function () {
-        return view('news.company-news');
-    })->name('company-news');
+    Route::get('/', [NewsController::class, 'userIndex'])->name('index');
+    Route::get('/{slug}', [HomeTypeDetailController::class, 'userShow'])->name('detail');
 });
 
 // Consulting
 Route::prefix('tu-van')->name('consulting.')->group(function () {
-    Route::get('/', function () {
-        return view('consulting.index');
-    })->name('index');
-
-    Route::get('/quy-trinh-lam-viec', function () {
-        return view('consulting.process');
-    })->name('process');
-
-    Route::get('/tu-van-phong-thuy', function () {
-        return view('consulting.feng-shui');
-    })->name('feng-shui');
+    Route::get('/', [NewsController::class, 'userIndex'])->name('index');
+    Route::get('/{slug}', [HomeTypeDetailController::class, 'userShow'])->name('detail');
 });
 
 Route::group(['prefix' => 'admin'], function () {
