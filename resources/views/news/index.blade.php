@@ -188,10 +188,10 @@
                                     @foreach($hotNews as $item)
                                         <div class="post-item">
                                             <div class="post-item-thumb">
-                                                <a href="#"><img src="{{ Voyager::image($item->image) }}" alt="..."></a>
+                                                <a href="{{ route('news.detail', $item->slug) }}"><img src="{{ Voyager::image($item->image) }}" alt="..."></a>
                                             </div>
                                             <div class="post-item-body">
-                                                <div class="post-title"><a href="#">{{$item->title}}</a></div>
+                                                <div class="post-title"><a href="{{ route('news.detail', $item->slug) }}">{{$item->title}}</a></div>
                                                 <div class="post-date">{{$item->published_at}}</div>
                                             </div>
                                         </div>

@@ -9,6 +9,7 @@ use Illuminate\Pagination\Paginator;
 use App\Models\Service;
 use App\Models\HomeType;
 use App\Models\NewCategory;
+use App\Models\Consulting;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -32,6 +33,8 @@ class AppServiceProvider extends ServiceProvider
         View::share('MenuHomeType', HomeType::select('id', 'name', 'slug')
                                         ->where('is_featured', 1)->get());
         View::share('MenuNewCategory', NewCategory::select('id', 'name', 'slug')
+                                        ->where('is_featured', 1)->get());
+        View::share('MenuConsulting', Consulting::select('id', 'title', 'slug', 'summary')
                                         ->where('is_featured', 1)->get());
                                                                        
     }

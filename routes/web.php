@@ -17,6 +17,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\HomeTypeController;
 use App\Http\Controllers\HomeTypeDetailController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\ConsultingController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -56,13 +57,13 @@ Route::prefix('du-an')->name('projects.')->group(function () {
 // News
 Route::prefix('tin-tuc')->name('news.')->group(function () {
     Route::get('/', [NewsController::class, 'userIndex'])->name('index');
-    Route::get('/{slug}', [HomeTypeDetailController::class, 'userShow'])->name('detail');
+    Route::get('/{slug}', [NewsController::class, 'userShow'])->name('detail');
 });
 
 // Consulting
 Route::prefix('tu-van')->name('consulting.')->group(function () {
-    Route::get('/', [NewsController::class, 'userIndex'])->name('index');
-    Route::get('/{slug}', [HomeTypeDetailController::class, 'userShow'])->name('detail');
+    Route::get('/', [ConsultingController::class, 'userIndex'])->name('index');
+    Route::get('/{slug}', [ConsultingController::class, 'userShow'])->name('detail');
 });
 
 Route::group(['prefix' => 'admin'], function () {

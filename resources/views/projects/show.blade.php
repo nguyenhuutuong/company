@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Chi Tiết Dự Án - HTcons')
+@section('title', $project->name . ' - HTcons')
 
 @section('content')
 
@@ -8,7 +8,7 @@
     'title' => 'Chi Tiết Dự Án',
     'breadcrumbs' => [
         ['name' => 'Dự án', 'url' => route('projects.index')],
-        ['name' => 'Villa nghỉ dưỡng - Anh Vương']
+        ['name' => $project->name]
     ]
 ])
 
@@ -171,36 +171,25 @@
     <div class="row">
         <div class="col-lg-8 project-detail-content">
             <div class="img-list">
-                <img src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=2070&auto=format&fit=crop" class="img-fluid rounded" alt="VILLA NGHỈ DƯỠNG">
+                <img src="{{ $project->image ? Voyager::image($project->image) : asset('images/project_default.jpg') }}" class="img-fluid rounded" alt="{{$project->name}}">
             </div>
             <hr>
-            <div class="date"><i class="far fa-calendar-alt"></i> 17/04/2023 <i class="far fa-eye"></i> 2156</div>
-            <h1 class="main-title mt-3">VILLA NGHỈ DƯỠNG - ANH VƯƠNG - XÃ HÒA SƠN, HUYỆN LƯƠNG SƠN, HOÀ BÌNH</h1>
+            <div class="date"><i class="far fa-calendar-alt"></i> {{ $project->created_at->format('d/m/Y') }} </div>
+            <h1 class="main-title mt-3">{{$project->name}}</h1>
             
             <h2 class="info-title">Thông tin công trình</h2>
-            <div class="property-item"><span>Chủ đầu tư</span><div>Anh Vương</div></div>
-            <div class="property-item"><span>Loại hình</span><div>Villa nghỉ dưỡng</div></div>
-            <div class="property-item"><span>Diện tích khu đất</span><div>7000m2</div></div>
-            <div class="property-item"><span>Diện tích xây dựng</span><div>400m2/sàn</div></div>
-            <div class="property-item"><span>Số tầng</span><div>3</div></div>
-            <div class="property-item"><span>Công năng </span><div>1 phòng khách + bếp ăn <br>1 phòng ngủ master (kèm WC) <br>2 phòng vệ sinh <br>3 phòng ngủ <br>1 phòng karaoke <br>1 hầm, 1 bể bơi <br>1 sân mái</div></div>
-            <div class="property-item"><span>Địa chỉ</span><div>Xã Hòa Sơn - Huyện Lương Sơn - Tỉnh Hòa Bình</div></div>
-            <div class="property-item"><span>Hợp đồng</span><div>Thi công trọn gói</div></div>
-            <div class="property-item"><span>Năm thực hiện </span><div>2022</div></div>
+            <div class="property-item"><span>Chủ đầu tư</span><div>{{$project->investor}}</div></div>
+            <div class="property-item"><span>Loại hình</span><div>{{$project->project_type}}</div></div>
+            <div class="property-item"><span>Diện tích khu đất</span><div>{{$project->land_area}}</div></div>
+            <div class="property-item"><span>Diện tích xây dựng</span><div>{{$project->construction_area}}</div></div>
+            <div class="property-item"><span>Số tầng</span><div>{{$project->floors}}</div></div>
+            <div class="property-item"><span>Công năng </span><div>{!! $project->features !!}</div></div>
+            <div class="property-item"><span>Địa chỉ</span><div>{{$project->address}}</div></div>
+            <div class="property-item"><span>Hợp đồng</span><div>{{$project->contract_type}}</div></div>
+            <div class="property-item"><span>Năm thực hiện </span><div>{{$project->year}}</div></div>
 
             <div class="detail-content">
-                <p style="text-align:justify">Khu nghỉ dưỡng nằm trên khu đất rộng 7000m2 tại trung tâm xã Hòa Sơn – Huyện Lương Sơn – Tỉnh Hòa Bình. Là một khu nghỉ dưỡng được chủ đầu tư có kế hoạch đầu tư&nbsp;rất tâm huyết và bài bản. Công trình được chia thành nhiều hạng mục gồm cụm biệt thự nghỉ dưỡng, khu bể bơi vô cực, khu vực hầm để làm khu vui chơi giải trí và các cụm công trình khác như hồ điều hòa, nhà nghỉ… được bố trí theo kiến trúc hiện đại trên tổng mặt bằng. Công trình sau khi hoàn thành hứa hẹn sẽ là một khu nghỉ dưỡng cuối tuấn cực VIP&nbsp;cho chủ đầu tư và đại gia đình.</p>
-                <h2 style="text-align:justify"><strong>Một số hình ảnh thiết kế</strong></h2>
-                <p style="text-align:center"><img alt="luong son 1" src="https://images.unsplash.com/photo-1600585152220-406b9b21dc3b?q=80&w=1974&auto=format&fit=crop"></p>
-                <p style="text-align:center"><em>Phối cảnh chính diện của căn villa nghỉ dưỡng</em></p>
-                 <p style="text-align:center"><img alt="luong son 2" src="https://images.unsplash.com/photo-1600585153492-7a216b259146?q=80&w=1974&auto=format&fit=crop"></p>
-                 <p style="text-align:center"><img alt="luong son interior" src="https://images.unsplash.com/photo-1618220179428-22790b461013?q=80&w=1974&auto=format&fit=crop"></p>
-                <p style="text-align:center"><em>Phối cảnh nội thất căn villa</em></p>
-
-                <h2>Cập nhật tiến độ thi công công trình:</h2>
-                <p style="text-align:center"><img alt="hình ảnh thi công" src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop"></p>
-                <h3>Bước tới giai đoạn hoàn thiện</h3>
-                 <p style="text-align:center"><img alt="hoàn thiện dự án" src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=2070&auto=format&fit=crop"></p>
+                {!! $project->content !!}
             </div>
             <hr>
             <div class="share">
@@ -218,34 +207,19 @@
                 <div class="article-nav border rounded">
                     <div class="ar-title">Dự án cùng mẫu</div>
                     <div class="p-3">
-                        <div class="item">
-                            <div class="thuml"><a href="#"> <img src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=2070&auto=format&fit=crop" alt="Dự án tương tự 1"> </a></div>
-                            <div class="body">
-                                <div class="name"><a class="truncate" href="#">BIỆT THỰ HIỆN ĐẠI - ANH MINH - QUẬN 2</a></div>
-                                <div class="date mt-lg-2 mt-0"><i class="far fa-calendar-alt"></i> 10/11/2025</div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="thuml"><a href="#"> <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1974&auto=format&fit=crop" alt="Dự án tương tự 2"> </a></div>
-                            <div class="body">
-                                <div class="name"><a class="truncate" href="#">VILLA VƯỜN - CHỊ LAN - CẦN GIỜ</a></div>
-                                <div class="date mt-lg-2 mt-0"><i class="far fa-calendar-alt"></i> 06/11/2025</div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="thuml"><a href="#"> <img src="https://images.unsplash.com/photo-1598228723793-52759bba239c?q=80&w=1974&auto=format&fit=crop" alt="Dự án tương tự 3"> </a></div>
-                            <div class="body">
-                                <div class="name"><a class="truncate" href="#">NHÀ PHỐ TÂN CỔ ĐIỂN - GIA ĐÌNH ANH BẢO</a></div>
-                                <div class="date mt-lg-2 mt-0"><i class="far fa-calendar-alt"></i> 21/10/2025</div>
-                            </div>
-                        </div>
-                         <div class="item">
-                            <div class="thuml"><a href="#"> <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=2070&auto=format&fit=crop" alt="Dự án tương tự 4"> </a></div>
-                            <div class="body">
-                                <div class="name"><a class="truncate" href="#">BIỆT THỰ SÂN VƯỜN - ANH KHẢI - BÌNH DƯƠNG</a></div>
-                                <div class="date mt-lg-2 mt-0"><i class="far fa-calendar-alt"></i> 15/09/2025</div>
-                            </div>
-                        </div>
+                        @if($projects->count() > 0)
+                            @foreach($projects as $project)
+                                <div class="item">
+                                    <div class="thuml"><a href="{{route('projects.detail', $project->slug)}}"> <img src="{{ $project->image ? Voyager::image($project->image) : asset('images/project_default.jpg') }}" alt="{{$project->name}}"> </a></div>
+                                    <div class="body">
+                                        <div class="name"><a class="truncate" href="{{route('projects.detail', $project->slug)}}">{{$project->name}}</a></div>
+                                        <div class="date mt-lg-2 mt-0"><i class="far fa-calendar-alt"></i> {{$project->created_at->format('d/m/Y')}}</div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @else
+                            <p>Chưa có dự án nào cùng mẫu.</p>
+                        @endif
                     </div>
                 </div>
             </div>

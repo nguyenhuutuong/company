@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
-@section('title', 'Chi Tiết Bài Viết - HTcons')
+@section('title', $news->title . ' - HTcons')
 
 @section('content')
 
 @include('partials.page-header', [
     'title' => 'Chi Tiết Bài Viết',
     'breadcrumbs' => [
-        ['name' => 'Tin tức', 'url' => url('/tin-tuc')],
-        ['name' => 'Top 5 xu hướng thiết kế...']
+        ['name' => 'Tin tức', 'url' => route('news.index')],
+        ['name' => $news->title]
     ]
 ])
 
@@ -127,32 +127,17 @@
             <!-- Article Content -->
             <div class="col-lg-8">
                 <article>
-                    <h1 class="article-title mb-3">Top 5 xu hướng thiết kế nội thất nổi bật nhất năm 2024 bạn không nên bỏ lỡ</h1>
+                    <h1 class="article-title mb-3">{{ $news->title }}</h1>
                     <div class="article-meta">
                         <span>Đăng bởi <strong>Admin</strong></span> | 
-                        <span>Ngày 15, Tháng 7, 2024</span>
+                        <span>Ngày {{ \Carbon\Carbon::parse($news->published_at)->format('d, F, Y') }}</span>
                     </div>
                     <div class="article-content">
-                        <img src="https://images.unsplash.com/photo-1556955112-28cde3817b0a?q=80&w=1974&auto=format&fit=crop" alt="Xu hướng thiết kế nội thất 2024" class="img-fluid rounded mb-4">
+                        <img src="{{ Voyager::image($news->image) }}" alt="{{ $news->title }}" class="img-fluid rounded mb-4">
                         
-                        <p class="lead">Năm 2024 chứng kiến sự lên ngôi của những xu hướng thiết kế nội thất đề cao tính bền vững, sự tối giản và kết nối với thiên nhiên. Cùng HTcons khám phá những phong cách đang định hình không gian sống hiện đại.</p>
+                        <p class="lead">{{ $news->summary }}</p>
                         
-                        <h4>1. Vật liệu bền vững và thân thiện môi trường</h4>
-                        <p>Xu hướng sử dụng vật liệu tái chế, gỗ tái sử dụng, tre, và các vật liệu tự nhiên khác ngày càng trở nên phổ biến. Điều này không chỉ giúp bảo vệ môi trường mà còn mang lại vẻ đẹp mộc mạc, gần gũi cho không gian sống.</p>
-
-                        <h4>2. Không gian mở và đa chức năng</h4>
-                        <p>Thiết kế không gian mở, kết nối phòng khách, bếp và phòng ăn đang là lựa chọn hàng đầu. Các món đồ nội thất thông minh, đa chức năng giúp tối ưu hóa diện tích, đặc biệt phù hợp với các căn hộ nhỏ.</p>
-                        
-                        <img src="https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=1932&auto=format&fit=crop" alt="Không gian mở" class="img-fluid rounded my-4">
-
-                        <h4>3. Đường cong và hình khối hữu cơ</h4>
-                        <p>Thay vì những đường nét góc cạnh, sắc bén, các thiết kế có đường cong mềm mại, hình khối hữu cơ lấy cảm hứng từ thiên nhiên đang được ưa chuộng. Sofa bo tròn, bàn ăn oval hay gương hình vòm mang lại cảm giác thư thái, dễ chịu.</p>
-
-                        <h4>4. Màu sắc lấy cảm hứng từ đất</h4>
-                        <p>Các tông màu ấm áp như nâu đất, cam cháy, xanh rêu, và màu be đang quay trở lại mạnh mẽ. Những gam màu này tạo ra một không gian ấm cúng, mời gọi và dễ dàng kết hợp với nhiều phong cách khác nhau.</p>
-
-                        <h4>5. Ánh sáng tự nhiên và cây xanh</h4>
-                        <p>Tận dụng tối đa ánh sáng tự nhiên qua các ô cửa kính lớn và đưa cây xanh vào nhà không chỉ giúp không gian thêm sức sống mà còn tốt cho sức khỏe. Đây là xu hướng chưa bao giờ lỗi thời.</p>
+                        {!! $news->content !!}
                     </div>
                 </article>
             </div>
@@ -165,24 +150,17 @@
                         <div class="sidebar-widget">
                             <h3 class="widget-title">Bài viết mới nhất</h3>
                             <div class="latest-posts">
+                                @foreach($hotNews as $hot)
                                 <div class="post-item">
                                     <div class="post-item-thumb">
-                                        <a href="#"><img src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=2070&auto=format&fit=crop" alt="..."></a>
+                                        <a href="{{ route('news.detail', $hot->slug) }}"><img src="{{ Voyager::image($hot->image) }}" alt="{{$hot->title}}"></a>
                                     </div>
                                     <div class="post-item-body">
-                                        <div class="post-title"><a href="#">KHỞI CÔNG BIỆT THỰ 260M2 TẠI HÀ TĨNH</a></div>
-                                        <div class="post-date">10/11/2025</div>
+                                        <div class="post-title"><a href="{{ route('news.detail', $hot->slug) }}">{{$hot->title}}</a></div>
+                                        <div class="post-date">{{ \Carbon\Carbon::parse($hot->published_at)->format('d/m/Y') }}</div>
                                     </div>
                                 </div>
-                                 <div class="post-item">
-                                    <div class="post-item-thumb">
-                                        <a href="#"><img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1974&auto=format&fit=crop" alt="..."></a>
-                                    </div>
-                                    <div class="post-item-body">
-                                        <div class="post-title"><a href="#">KHỞI CÔNG BIỆT THỰ HƠN 500M2 TẠI NINH KIỀU - CẦN THƠ</a></div>
-                                        <div class="post-date">06/11/2025</div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
 
@@ -192,16 +170,16 @@
                             <div class="category-list">
                                <ul class="list-group list-group-flush">
                                     <li class="list-group-item">
-                                        <a href="{{ route('news.experience') }}">Kinh nghiệm xây nhà</a>
+                                        <a href="{{ route('news.index', ['slug' => 'kinh-nghiem-xay-nha']) }}">Kinh nghiệm xây nhà</a>
                                     </li>
                                     <li class="list-group-item">
-                                        <a href="{{ route('news.company-news') }}">Tin tức công ty</a>
+                                        <a href="{{ route('news.index', ['slug' => 'tin-tuc-cong-ty']) }}">Tin tức công ty</a>
                                     </li>
                                      <li class="list-group-item">
                                         <a href="#">Tư vấn thiết kế</a>
                                     </li>
                                      <li class="list-group-item">
-                                        <a href="{{ route('consulting.feng-shui') }}">Phong thủy</a>
+                                        <a href="#">Phong thủy</a>
                                     </li>
                                 </ul>
                             </div>

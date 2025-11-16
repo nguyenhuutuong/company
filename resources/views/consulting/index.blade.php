@@ -19,24 +19,22 @@
         </div>
 
         <div class="row">
-            <div class="col-md-6 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Quy Trình Làm Việc</h5>
-                        <p class="card-text">Tìm hiểu các bước làm việc chuyên nghiệp, minh bạch của chúng tôi để đảm bảo dự án thành công tốt đẹp.</p>
-                        <a href="{{ route('consulting.process') }}" class="btn btn-danger">Xem chi tiết</a>
+            @if($MenuConsulting->isEmpty())
+                <li>không có danh mục tu vấn nào</li>
+            @else
+                @foreach($MenuConsulting as $item)
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">{{$item->title}}</h5>
+                            <p class="card-text">{{$item->summary}}</p>
+                            <a href="{{ route('consulting.detail', $item->slug) }}" class="btn btn-danger">Xem chi tiết</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Tư Vấn Phong Thủy</h5>
-                        <p class="card-text">Áp dụng các yếu tố phong thủy vào thiết kế để mang lại vượng khí, tài lộc và sự an tâm cho gia chủ.</p>
-                        <a href="{{ route('consulting.feng-shui') }}" class="btn btn-danger">Xem chi tiết</a>
-                    </div>
-                </div>
-            </div>
+                @endforeach
+            @endif
+            
         </div>
 
     </div>

@@ -90,10 +90,15 @@
                         Tư vấn
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownConsulting">
-                        <li><a class="dropdown-item" href="{{ route('consulting.index') }}">Tổng Quan Tư Vấn</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="{{ route('consulting.process') }}">Quy Trình Làm Việc</a></li>
-                        <li><a class="dropdown-item" href="{{ route('consulting.feng-shui') }}">Tư Vấn Phong Thủy</a></li>
+                        @if($MenuConsulting->isEmpty())
+                            <li>không có danh mục tu vấn</li>
+                        @else
+                            <li><a class="dropdown-item" href="{{ route('consulting.index') }}">Tổng Quan Tư Vấn</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            @foreach($MenuConsulting as $item)
+                            <li><a class="dropdown-item" href="{{ route('consulting.detail', $item->slug) }}">{{$item->title}}</a></li>
+                            @endforeach
+                        @endif
                     </ul>
                 </li>
                 <li class="nav-item">

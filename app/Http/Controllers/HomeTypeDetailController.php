@@ -26,13 +26,16 @@ class HomeTypeDetailController extends VoyagerBaseController
 
     }
 
-    public function userShow(Request $request, $id){
-        if($request->slug == 'all'){
-            $home_types = HomeType::where('is_featured', 1)->paginate(6);
-            return view('models.index', compact('home_types'));
-        }
-        $home_type = HomeType::where('slug', $request->slug)
-                            ->where('is_featured', 1)->first();
-        return view('projects.show',compact('home_type'));
+    public function userShow(Request $request, $slug){
+        $project = HomeTypeDetail::where('slug', $slug)
+                                    ->where('is_featured', 1)->first();
+        $projects = HomeTypeDetail::select('name', 'slug', 'image', 'created_at')
+                                    ->where('home_type_id', $project->home_type_id)
+                                    ->where('id', '!=', $project->id)
+                                    ->where('is_featured', 1)
+                                    ->orderBy('created_at', 'desc')
+                                    ->take(4)
+                                    ->get();
+        return view('projects.show',compact('project', 'projects'));
     }
 }
