@@ -3,6 +3,12 @@
 @section('title', 'Trang Chủ - Công Ty Xây Dựng')
 
 @section('content')
+<style>
+    .project-card-link {
+        text-decoration: none;
+        color: inherit;
+    }
+</style>
     <!-- Hero Section -->
     <section class="hero-section"
         style="background-image: url('{{ $banner ? Voyager::image($banner->image) : asset("images/banner_default.jpg") }}')">
@@ -86,63 +92,27 @@
         <div class="container">
             <h2 class="section-title">Dự Án Đã Hoàn Thành</h2>
             <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="card project-card h-100">
-                        <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1974&auto=format&fit=crop" class="card-img-top" alt="Dự án 1">
-                        <div class="card-body">
-                            <h5 class="card-title">Biệt Thự Vinhomes Central Park</h5>
-                            <p class="card-text">Diện tích: 300m² | Hoàn thành: 2024</p>
+                @if($projects->isEmpty())
+                    không có dự án nào
+                @else
+                    @foreach($projects as $index => $item)
+                        <div class="col-md-4 mb-4">
+                            <a href="{{ route('projects.detail', $item->slug) }}" class="project-card-link">
+                                <div class="card project-card h-100">
+                                    <img src="{{ $item->image ? Voyager::image($item->image) : asset("images/project_default.jpg") }}" class="card-img-top" alt="Dự án 1">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{$item->name}}</h5>
+                                        <p class="card-text">Diện tích: {{$item->land_area}} | Hoàn thành: {{$item->year}}</p>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card project-card h-100">
-                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" class="card-img-top" alt="Dự án 2">
-                        <div class="card-body">
-                            <h5 class="card-title">Nhà Phố Thủ Đức</h5>
-                            <p class="card-text">Diện tích: 120m² | Hoàn thành: 2024</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card project-card h-100">
-                        <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=2070&auto=format&fit=crop" class="card-img-top" alt="Dự án 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Villa Đà Lạt</h5>
-                            <p class="card-text">Diện tích: 500m² | Hoàn thành: 2023</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card project-card h-100">
-                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop" class="card-img-top" alt="Dự án 4">
-                        <div class="card-body">
-                            <h5 class="card-title">Căn Hộ Penthouse Quận 2</h5>
-                            <p class="card-text">Diện tích: 250m² | Hoàn thành: 2023</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card project-card h-100">
-                        <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=2070&auto=format&fit=crop" class="card-img-top" alt="Dự án 5">
-                        <div class="card-body">
-                            <h5 class="card-title">Nhà Phố Quận 7</h5>
-                            <p class="card-text">Diện tích: 150m² | Hoàn thành: 2022</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card project-card h-100">
-                        <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=2070&auto=format&fit=crop" class="card-img-top" alt="Dự án 6">
-                        <div class="card-body">
-                            <h5 class="card-title">Biệt Thự Vườn Thủ Đức</h5>
-                            <p class="card-text">Diện tích: 400m² | Hoàn thành: 2022</p>
-                        </div>
-                    </div>
-                </div>
+                    @endforeach
+                @endif
+                
             </div>
             <div class="text-center mt-4">
-                <a href="/du-an" class="btn btn-custom btn-lg" >Xem thêm</a>
+                <a href="{{route('projects.index',['status'=>'hoan-thanh'])}}" class="btn btn-custom btn-lg" >Xem thêm</a>
             </div>
         </div>
     </section>
