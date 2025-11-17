@@ -50,22 +50,44 @@
                             <div class="col-lg-6">
                                 <h3 class="card-title mb-4">Gửi yêu cầu của bạn</h3>
                                 <p class="text-muted mb-4">Chúng tôi sẽ trả lời bạn trong thời gian sớm nhất.</p>
-                                <form>
+
+                                @if (session('success'))
+                                    <div class="alert alert-success">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
+
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+
+                                <form action="{{ route('contact.store') }}" method="POST">
+                                    @csrf
                                     <div class="mb-3">
                                         <label for="name" class="form-label">Họ và tên</label>
-                                        <input type="text" class="form-control" id="name" placeholder="Nhập họ và tên của bạn">
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="Nhập họ và tên của bạn" value="{{ old('name') }}">
                                     </div>
                                     <div class="mb-3">
                                         <label for="email" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="email" placeholder="Nhập địa chỉ email">
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="Nhập địa chỉ email" value="{{ old('email') }}">
+                                    </div>
+                                     <div class="mb-3">
+                                        <label for="phone" class="form-label">Số điện thoại</label>
+                                        <input type="text" class="form-control" id="phone" name="phone" placeholder="Nhập số điện thoại" value="{{ old('phone') }}">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="subject" class="form-label">Chủ đề</label>
-                                        <input type="text" class="form-control" id="subject" placeholder="Nhập chủ đề">
+                                        <label for="title" class="form-label">Chủ đề</label>
+                                        <input type="text" class="form-control" id="title" name="title" placeholder="Nhập chủ đề" value="{{ old('title') }}">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="message" class="form-label">Nội dung</label>
-                                        <textarea class="form-control" id="message" rows="5" placeholder="Nhập nội dung yêu cầu"></textarea>
+                                        <label for="content" class="form-label">Nội dung</label>
+                                        <textarea class="form-control" id="content" name="content" rows="5" placeholder="Nhập nội dung yêu cầu">{{ old('content') }}</textarea>
                                     </div>
                                     <div class="d-grid">
                                         <button type="submit" class="btn btn-primary btn-lg">Gửi</button>

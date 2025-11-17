@@ -18,6 +18,7 @@ use App\Http\Controllers\HomeTypeController;
 use App\Http\Controllers\HomeTypeDetailController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ConsultingController;
+use App\Http\Controllers\ContactController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -26,9 +27,8 @@ Route::get('/gioi-thieu', function () {
     return view('about');
 });
 
-Route::get('/lien-he', function () {
-    return view('contact');
-});
+Route::get('/lien-he', [ContactController::class, 'index'])->name('contact');
+Route::post('/lien-he', [ContactController::class, 'store'])->name('contact.store');
 
 Route::get('/phpinfo', function () {
     phpinfo();
@@ -68,4 +68,5 @@ Route::prefix('tu-van')->name('consulting.')->group(function () {
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
+    Route::get('messages/{id}', [App\Http\Controllers\Voyager\MessagesController::class, 'show'])->name('voyager.messages.show');
 });
