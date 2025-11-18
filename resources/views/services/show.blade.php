@@ -3,7 +3,14 @@
 @section('title', 'Thiết Kế & Thi Công Nội Thất - HTcons')
 
 @section('content')
-
+<style>
+    .col-lg-8 img {
+        max-width: 80% !important;
+        height: auto !important;
+        display: block;
+        margin: 0 auto;
+    }
+</style>
 <!-- Service Detail Content -->
 <section class="py-5">
     <div class="container">

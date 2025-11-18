@@ -44,7 +44,7 @@
                         <img src="{{ $service ? Voyager::image($service->image) : asset("images/service_default.jpg") }}" class="card-img-top" alt="{{ $service->name }}">
                         <div class="card-body d-flex flex-column p-4">
                             <h5 class="card-title fw-bold">{{ $service->name }}</h5>
-                            <p class="card-text text-muted small flex-grow-1">{{ $service->summary}}</p>
+                            <p class="card-text text-muted small flex-grow-1">{{ Str::words($service->summary, 50, '...')}}</p>
                             <a href="{{ route('services.detail', $service->slug)}}" class="btn btn-primary mt-3 align-self-start">Xem chi tiết</a>
                         </div>
                     </div>

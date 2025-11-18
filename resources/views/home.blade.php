@@ -68,7 +68,7 @@
                                     <div class="service-card" style="background-image: url('{{ $service->image ? Voyager::image($service->image) : asset("images/banner_default.jpg") }}');">
                                         <div class="overlay">
                                             <h4>{{ $service->name ?? 'Tiêu đề mặc định' }}</h4>
-                                            <p>{{ $service->summary ?? 'Tiêu đề mặc định' }}</p>
+                                            <p>{{ Str::words($service->summary, 30, '...')}}</p>
                                         </div>
                                     </div>
                                 </div>
