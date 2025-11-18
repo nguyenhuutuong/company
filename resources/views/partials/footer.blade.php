@@ -23,7 +23,7 @@
         </div>
         <hr>
         <div class="text-center">
-            <p>&copy; 2024 Tên Công Ty. All Rights Reserved.</p>
+            <p>&copy; 2024 {{ setting('site.name', 'Công Ty Xây Dựng') }}. All Rights Reserved.</p>
         </div>
     </div>
 </footer>

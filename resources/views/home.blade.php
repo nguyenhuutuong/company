@@ -99,7 +99,7 @@
                         <div class="col-md-4 mb-4">
                             <a href="{{ route('projects.detail', $item->slug) }}" class="project-card-link">
                                 <div class="card project-card h-100">
-                                    <img src="{{ $item->image ? Voyager::image($item->image) : asset("images/project_default.jpg") }}" class="card-img-top" alt="Dự án 1">
+                                    <img src="{{ $item->image ? Voyager::image($item->image) : asset("images/project_default.jpg") }}" class="card-img-top" alt="Dự án 1" style="max-height: 200px; object-fit: cover;">
                                     <div class="card-body">
                                         <h5 class="card-title">{{$item->name}}</h5>
                                         <p class="card-text">Diện tích: {{$item->land_area}} | Hoàn thành: {{$item->year}}</p>

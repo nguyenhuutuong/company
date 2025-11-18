@@ -6,6 +6,7 @@ use App\Models\Message;
 use Illuminate\Http\Request;
 use TCG\Voyager\Http\Controllers\VoyagerBaseController;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\ReplyMessageMail;
 use Exception;
 
 class MessagesController extends VoyagerBaseController
@@ -37,7 +38,7 @@ class MessagesController extends VoyagerBaseController
     }
 
     // POST a reply
-    public function store(Request $request)
+    public function reply(Request $request)
     {
         $request->validate([
             'parent_id' => 'required|exists:messages,id',
@@ -61,11 +62,19 @@ class MessagesController extends VoyagerBaseController
         $parentMessage->is_read = true;
         $parentMessage->save();
 
-        // TODO: Send email notification
-        // Mail::to($parentMessage->email)->send(new \App\Mail\MessageReply($parentMessage, $reply));
+        // Send email notification to the user
+        try {
+            Mail::to($parentMessage->email)->send(new ReplyMessageMail($parentMessage, $reply));
+        } catch (Exception $e) {
+            // Log the error or handle it as needed
+            return redirect()->route('voyager.messages.index')->with([
+                'message'    => "Reply saved, but failed to send email: " . $e->getMessage(),
+                'alert-type' => 'error',
+            ]);
+        }
 
         return redirect()->route('voyager.messages.index')->with([
-            'message'    => "Successfully replied to message.",
+            'message'    => "Successfully replied and sent email.",
             'alert-type' => 'success',
         ]);
     }

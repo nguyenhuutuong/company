@@ -69,4 +69,5 @@ Route::prefix('tu-van')->name('consulting.')->group(function () {
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
     Route::get('messages/{id}', [App\Http\Controllers\Voyager\MessagesController::class, 'show'])->name('voyager.messages.show');
+    Route::post('messages/reply', [App\Http\Controllers\Voyager\MessagesController::class, 'reply'])->name('voyager.messages.reply');
 });

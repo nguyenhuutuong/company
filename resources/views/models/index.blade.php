@@ -55,7 +55,7 @@
                 @foreach($home_types as $item)
                     <!-- Sample Model 1: -->
                     <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-stretch">
-                    <a href="{{ route('projects.index', ['model'=>$item->slug]) }}" class="text-decoration-none w-100">
+                    <a href="{{ route('projects.index', ['id'=>$item->id]) }}" class="text-decoration-none w-100">
                         <div class="model-card">
                             <img src="{{ Voyager::image($item->image) }}" class="model-card-img" alt="{{ $item->name }}">
                             <div class="card-body">

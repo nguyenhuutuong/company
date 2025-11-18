@@ -73,7 +73,7 @@
                     <h4 class="modal-title">Send Reply</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
-                <form action="{{ route('voyager.messages.store') }}" id="replyForm" method="POST">
+                <form action="{{ route('voyager.messages.reply') }}" id="replyForm" method="POST">
                     @csrf
                     <div class="modal-body">
                         <input type="hidden" name="parent_id" value="">
