@@ -30,9 +30,10 @@ Route::get('/gioi-thieu', function () {
 Route::get('/lien-he', [ContactController::class, 'index'])->name('contact');
 Route::post('/lien-he', [ContactController::class, 'store'])->name('contact.store');
 
-Route::get('/phpinfo', function () {
-    phpinfo();
-});
+// Route::get('/phpinfo', function () {
+//     phpinfo();
+// });
+
 Route::get('/error/unsupported-image', function () {
     return view('errors.unsupported_image');
 })->name('error.unsupported_image');

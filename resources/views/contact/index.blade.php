@@ -39,12 +39,12 @@
                                         <i class="fas fa-envelope fa-2x me-3 text-primary"></i>
                                         <div>
                                             <strong>Email:</strong><br>
-                                            {{ setting('site.email') }}
+                                            {{ setting('site.gmail') }}
                                         </div>
                                     </li>
                                 </ul>
                                 <div class="mt-4">
-                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.630623349635!2d106.68112831474883!3d10.76291199233079!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f1c0a5a5d7b%3A0x8c7c0b4b3c3b3d3b!2sHTCons!5e0!3m2!1svi!2s!4v1678886482563!5m2!1svi!2s" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                    <iframe src="{{ setting('site.mapLink') }}" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                                 </div>
                             </div>
                             <div class="col-lg-6">
