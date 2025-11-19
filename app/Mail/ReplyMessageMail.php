@@ -49,6 +49,10 @@ class ReplyMessageMail extends Mailable
     {
         return new Content(
             view: 'emails.reply-message',
+            with: [
+                'reply' => $this->reply,
+                'parentMessage' => $this->parentMessage,
+            ]
         );
     }
 
