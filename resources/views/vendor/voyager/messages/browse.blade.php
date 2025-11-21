@@ -70,7 +70,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Send Reply</h4>
+                    <h4 class="modal-title">Phản hồi tin nhắn</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <form action="{{ route('voyager.messages.reply') }}" id="replyForm" method="POST">
@@ -78,13 +78,13 @@
                     <div class="modal-body">
                         <input type="hidden" name="parent_id" value="">
                         <div class="form-group">
-                            <label for="message">Message</label>
+                            <label for="message">Nội dung</label>
                             <textarea name="message" class="form-control" rows="5"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Send Reply</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-primary">Gửi</button>
                     </div>
                 </form>
             </div>
